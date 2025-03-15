@@ -224,7 +224,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>Your entity must comply with the Arm's Length Principle for all Related Party transactions and Connected Person payments.</p>
             `;
             
-            disclosureFormRequired = true;
+            // The Disclosure Form is only required if specific thresholds are met
+            // We'll determine this after checking the related party and connected person thresholds
         }
         
         applicabilityHtml += `</div>`;
@@ -243,6 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>You are <span class="required">required</span> to complete the Related Party schedule in the Transfer Pricing Disclosure Form.</p>
                 `;
                 
+                disclosureFormRequired = true;
                 breakdownCategoriesRequired = true;
                 relatedPartyHtml += `
                     <p>Additionally, you must disclose each category of Related Party transactions that exceeds AED ${formatNumber(THRESHOLDS.RELATED_PARTY_CATEGORY_DISCLOSURE)} million:</p>
@@ -341,6 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (anyConnectedPersonExceedsThreshold) {
                 connectedPersonHtml += `<p>You are <span class="required">required</span> to complete the Connected Person schedule in the Transfer Pricing Disclosure Form for the transactions that exceed the threshold.</p>`;
+                disclosureFormRequired = true;
             } else {
                 connectedPersonHtml += `<p>You are <span class="not-required">not required</span> to complete the Connected Person schedule in the Transfer Pricing Disclosure Form as none of your transactions exceed the threshold.</p>`;
             }
@@ -460,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     summaryHtml += `<li>Connected Person Schedule: <span class="not-required">Not Required</span> (below threshold)</li>`;
                 }
             } else {
-                summaryHtml += `<li>Transfer Pricing Disclosure Form: <span class="not-required">Not Required</span> (below thresholds)</li>`;
+                summaryHtml += `<li>Transfer Pricing Disclosure Form: <span class="not-required">Not Required</span> (no thresholds exceeded)</li>`;
             }
         } else {
             summaryHtml += `<li>Transfer Pricing Regulations: <span class="not-required">Not Applicable</span> (no Related Party or Connected Person transactions)</li>`;
