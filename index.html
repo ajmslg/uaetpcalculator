@@ -3,48 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UAE Transfer Pricing Compliance Calculator | AJMS LG</title>
+    <title>UAE Transfer Pricing Calculator | AJMS LG</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UAE Transfer Pricing Compliance Calculator | AJMS LG</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Open Graph / LinkedIn -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ajmslg.github.io/uaetpcalculator/">
-    <meta property="og:title" content="UAE Transfer Pricing Compliance Calculator">
-    <meta property="og:description" content="Calculate your UAE Transfer Pricing compliance requirements with this easy-to-use calculator tool from AJMS LG. Determine your disclosure needs, Local File and Master File requirements based on UAE tax regulations.">
-    <meta property="og:image" content="https://ajmslg.github.io/uaetpcalculator/facebookimage.jpg">
-
-   <!-- Facebook Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ajmslg.github.io/uaetpcalculator/">
-    <meta property="og:title" content="UAE Transfer Pricing Compliance Calculator">
-    <meta property="og:description" content="Calculate your UAE Transfer Pricing compliance requirements with this easy-to-use calculator tool from AJMS LG. Determine your disclosure needs, Local File and Master File requirements based on UAE tax regulations.">
-    <meta property="og:image" content="https://ajmslg.github.io/uaetpcalculator/facebookimage.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ajmslg.github.io/uaetpcalculator/">
-    <meta property="twitter:title" content="UAE Transfer Pricing Compliance Calculator">
-    <meta property="twitter:description" content="Calculate your UAE Transfer Pricing compliance requirements with this easy-to-use calculator tool from AJMS LG. Determine your disclosure needs, Local File and Master File requirements based on UAE tax regulations.">
-    <meta property="twitter:image" content="https://ajmslg.github.io/uaetpcalculator/facebookimage.jpg">
 </head>
-
-    
+<body>
     <div class="container">
         <header>
             <div class="logo">
                 <h1>AJMS LG</h1>
                 <div class="logo-underline"></div>
             </div>
-            <h2>UAE Transfer Pricing Compliance Calculator</h2>
+            <h2>UAE Transfer Pricing Calculator</h2>
+            <p class="tagline">Comprehensive guidance for your UAE Transfer Pricing requirements</p>
         </header>
 
         <div class="calculator-container">
@@ -126,19 +97,13 @@
                     </div>
                     
                     <div class="form-group" id="entityRevenueGroup">
-                        <label for="entityRevenue">Your entity's revenue in the relevant Tax Period:</label>
-                        <div class="input-suffix">
-                            <input type="number" id="entityRevenue" name="entityRevenue" placeholder="Enter amount" min="0" step="0.1">
-                            <span class="suffix">AED (millions)</span>
-                        </div>
+                        <label for="entityRevenue">Your entity's revenue in the relevant Tax Period (in AED):</label>
+                        <input type="number" id="entityRevenue" name="entityRevenue" placeholder="Enter amount in AED" min="0">
                     </div>
 
                     <div class="form-group" id="groupRevenueGroup">
-                        <label for="groupRevenue">Consolidated group revenue in the relevant Tax Period:</label>
-                        <div class="input-suffix">
-                            <input type="number" id="groupRevenue" name="groupRevenue" placeholder="Enter amount" min="0" step="0.1">
-                            <span class="suffix">AED (billions)</span>
-                        </div>
+                        <label for="groupRevenue">Consolidated group revenue in the relevant Tax Period (in AED):</label>
+                        <input type="number" id="groupRevenue" name="groupRevenue" placeholder="Enter amount in AED" min="0">
                     </div>
                 </div>
 
@@ -150,11 +115,8 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="totalRelatedPartyTransactions">Total value of transactions with all Related Parties:</label>
-                        <div class="input-suffix">
-                            <input type="number" id="totalRelatedPartyTransactions" name="totalRelatedPartyTransactions" placeholder="Enter amount" min="0" step="0.1">
-                            <span class="suffix">AED (millions)</span>
-                        </div>
+                        <label for="totalRelatedPartyTransactions">Total value of transactions with all Related Parties (in AED):</label>
+                        <input type="number" id="totalRelatedPartyTransactions" name="totalRelatedPartyTransactions" placeholder="Enter amount in AED" min="0">
                     </div>
 
                     <div class="transaction-categories" id="transactionCategories">
@@ -162,43 +124,38 @@
                         <p class="note">Only required if total related party transactions exceed AED 40 million</p>
                         
                         <div class="form-group">
-                            <label for="saleOfGoods">Sale of Goods:</label>
-                            <div class="input-suffix">
-                                <input type="number" id="saleOfGoods" name="saleOfGoods" placeholder="Enter amount" min="0" step="0.1">
-                                <span class="suffix">AED (millions)</span>
-                            </div>
+                            <label for="goodsTransactions">Goods (in AED):</label>
+                            <input type="number" id="goodsTransactions" name="goodsTransactions" placeholder="Enter amount in AED" min="0">
                         </div>
                         
                         <div class="form-group">
-                            <label for="provisionOfServices">Provision of Services:</label>
-                            <div class="input-suffix">
-                                <input type="number" id="provisionOfServices" name="provisionOfServices" placeholder="Enter amount" min="0" step="0.1">
-                                <span class="suffix">AED (millions)</span>
-                            </div>
+                            <label for="servicesTransactions">Services (in AED):</label>
+                            <input type="number" id="servicesTransactions" name="servicesTransactions" placeholder="Enter amount in AED" min="0">
                         </div>
                         
                         <div class="form-group">
-                            <label for="intellectualProperty">Intellectual Property:</label>
-                            <div class="input-suffix">
-                                <input type="number" id="intellectualProperty" name="intellectualProperty" placeholder="Enter amount" min="0" step="0.1">
-                                <span class="suffix">AED (millions)</span>
-                            </div>
+                            <label for="intellectualPropertyTransactions">Intellectual Property (in AED):</label>
+                            <input type="number" id="intellectualPropertyTransactions" name="intellectualPropertyTransactions" placeholder="Enter amount in AED" min="0">
                         </div>
                         
                         <div class="form-group">
-                            <label for="interestTransactions">Interest Transactions:</label>
-                            <div class="input-suffix">
-                                <input type="number" id="interestTransactions" name="interestTransactions" placeholder="Enter amount" min="0" step="0.1">
-                                <span class="suffix">AED (millions)</span>
-                            </div>
+                            <label for="interestTransactions">Interest (in AED):</label>
+                            <input type="number" id="interestTransactions" name="interestTransactions" placeholder="Enter amount in AED" min="0">
                         </div>
                         
                         <div class="form-group">
-                            <label for="otherTransactions">Other Transactions:</label>
-                            <div class="input-suffix">
-                                <input type="number" id="otherTransactions" name="otherTransactions" placeholder="Enter amount" min="0" step="0.1">
-                                <span class="suffix">AED (millions)</span>
-                            </div>
+                            <label for="assetsTransactions">Assets (in AED):</label>
+                            <input type="number" id="assetsTransactions" name="assetsTransactions" placeholder="Enter amount in AED" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="liabilitiesTransactions">Liabilities (in AED):</label>
+                            <input type="number" id="liabilitiesTransactions" name="liabilitiesTransactions" placeholder="Enter amount in AED" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="otherTransactions">Others (in AED):</label>
+                            <input type="number" id="otherTransactions" name="otherTransactions" placeholder="Enter amount in AED" min="0">
                         </div>
                     </div>
                 </div>
@@ -214,11 +171,8 @@
                         <div class="connected-person-item">
                             <h4>Connected Person 1</h4>
                             <div class="form-group">
-                                <label for="connectedPerson1">Value of transactions with Connected Person 1 and their Related Parties:</label>
-                                <div class="input-suffix">
-                                    <input type="number" id="connectedPerson1" name="connectedPerson1" placeholder="Enter amount" min="0" step="0.1">
-                                    <span class="suffix">AED (thousands)</span>
-                                </div>
+                                <label for="connectedPerson1">Value of transactions with Connected Person 1 and their Related Parties (in AED):</label>
+                                <input type="number" id="connectedPerson1" name="connectedPerson1" placeholder="Enter amount in AED" min="0">
                             </div>
                         </div>
                     </div>
@@ -244,10 +198,6 @@
                     <h3>Transfer Pricing Requirements</h3>
                 </div>
                 <div id="resultsContent"></div>
-            </div>
-            
-            <div class="main-disclaimer">
-                <p>This calculator outcome is for information purposes only and not a tax or transfer pricing advice.</p>
             </div>
         </div>
 
