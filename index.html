@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAE Transfer Pricing Compliance Calculator | AJMS LG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>AJMS LG</h1>
+                <div class="logo-underline"></div>
+            </div>
+            <h2>UAE Transfer Pricing Compliance Calculator</h2>
+        </header>
+
+        <div class="calculator-container">
+            <form id="tpCalculatorForm">
+                <!-- Entity Information Section -->
+                <div class="section">
+                    <div class="section-header">
+                        <i class="fas fa-building"></i>
+                        <h3>Entity Information</h3>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entityType">Entity Type:</label>
+                        <select id="entityType" name="entityType">
+                            <option value="regular">Regular Taxable Person</option>
+                            <option value="taxGroup">Tax Group</option>
+                            <option value="freeZone">Free Zone Entity</option>
+                            <option value="exempted">Exempted Entity</option>
+                            <option value="smallBusiness">Entity Claiming Small Business Relief</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hasRelatedPartyTransactions">Do you have transactions or arrangements with Related Parties?</label>
+                        <div class="radio-group">
+                            <input type="radio" id="relatedYes" name="hasRelatedPartyTransactions" value="yes">
+                            <label for="relatedYes">Yes</label>
+                            <input type="radio" id="relatedNo" name="hasRelatedPartyTransactions" value="no" checked>
+                            <label for="relatedNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hasConnectedPersonTransactions">Do you have transactions with Connected Persons?</label>
+                        <div class="radio-group">
+                            <input type="radio" id="connectedYes" name="hasConnectedPersonTransactions" value="yes">
+                            <label for="connectedYes">Yes</label>
+                            <input type="radio" id="connectedNo" name="hasConnectedPersonTransactions" value="no" checked>
+                            <label for="connectedNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="isPartOfMNEGroup">
+                        <label for="mneGroup">Is your entity part of a Multinational Enterprise (MNE) Group?</label>
+                        <div class="radio-group">
+                            <input type="radio" id="mneYes" name="isPartOfMNE" value="yes">
+                            <label for="mneYes">Yes</label>
+                            <input type="radio" id="mneNo" name="isPartOfMNE" value="no" checked>
+                            <label for="mneNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="isUAEHeadquartered">
+                        <label for="uaeHQ">Is your group headquartered in the UAE?</label>
+                        <div class="radio-group">
+                            <input type="radio" id="uaeHQYes" name="isUAEHeadquartered" value="yes">
+                            <label for="uaeHQYes">Yes</label>
+                            <input type="radio" id="uaeHQNo" name="isUAEHeadquartered" value="no" checked>
+                            <label for="uaeHQNo">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="hasBusinessOutsideUAE">
+                        <label for="businessOutsideUAE">Does your group have business establishments outside the UAE?</label>
+                        <div class="radio-group">
+                            <input type="radio" id="outsideUAEYes" name="hasBusinessOutsideUAE" value="yes">
+                            <label for="outsideUAEYes">Yes</label>
+                            <input type="radio" id="outsideUAENo" name="hasBusinessOutsideUAE" value="no" checked>
+                            <label for="outsideUAENo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revenue Information Section -->
+                <div class="section" id="revenueSection">
+                    <div class="section-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Revenue Information</h3>
+                    </div>
+                    
+                    <div class="form-group" id="entityRevenueGroup">
+                        <label for="entityRevenue">Your entity's revenue in the relevant Tax Period:</label>
+                        <div class="input-suffix">
+                            <input type="number" id="entityRevenue" name="entityRevenue" placeholder="Enter amount" min="0" step="0.1">
+                            <span class="suffix">AED (millions)</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="groupRevenueGroup">
+                        <label for="groupRevenue">Consolidated group revenue in the relevant Tax Period:</label>
+                        <div class="input-suffix">
+                            <input type="number" id="groupRevenue" name="groupRevenue" placeholder="Enter amount" min="0" step="0.1">
+                            <span class="suffix">AED (billions)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Party Transactions Section -->
+                <div class="section" id="relatedPartySection">
+                    <div class="section-header">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Related Party Transactions</h3>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="totalRelatedPartyTransactions">Total value of transactions with all Related Parties:</label>
+                        <div class="input-suffix">
+                            <input type="number" id="totalRelatedPartyTransactions" name="totalRelatedPartyTransactions" placeholder="Enter amount" min="0" step="0.1">
+                            <span class="suffix">AED (millions)</span>
+                        </div>
+                    </div>
+
+                    <div class="transaction-categories" id="transactionCategories">
+                        <h4>Breakdown of Related Party Transactions by Category</h4>
+                        <p class="note">Only required if total related party transactions exceed AED 40 million</p>
+                        
+                        <div class="form-group">
+                            <label for="saleOfGoods">Sale of Goods:</label>
+                            <div class="input-suffix">
+                                <input type="number" id="saleOfGoods" name="saleOfGoods" placeholder="Enter amount" min="0" step="0.1">
+                                <span class="suffix">AED (millions)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="provisionOfServices">Provision of Services:</label>
+                            <div class="input-suffix">
+                                <input type="number" id="provisionOfServices" name="provisionOfServices" placeholder="Enter amount" min="0" step="0.1">
+                                <span class="suffix">AED (millions)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="intellectualProperty">Intellectual Property:</label>
+                            <div class="input-suffix">
+                                <input type="number" id="intellectualProperty" name="intellectualProperty" placeholder="Enter amount" min="0" step="0.1">
+                                <span class="suffix">AED (millions)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interestTransactions">Interest Transactions:</label>
+                            <div class="input-suffix">
+                                <input type="number" id="interestTransactions" name="interestTransactions" placeholder="Enter amount" min="0" step="0.1">
+                                <span class="suffix">AED (millions)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="otherTransactions">Other Transactions:</label>
+                            <div class="input-suffix">
+                                <input type="number" id="otherTransactions" name="otherTransactions" placeholder="Enter amount" min="0" step="0.1">
+                                <span class="suffix">AED (millions)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connected Person Transactions Section -->
+                <div class="section" id="connectedPersonSection">
+                    <div class="section-header">
+                        <i class="fas fa-users"></i>
+                        <h3>Connected Person Transactions</h3>
+                    </div>
+                    
+                    <div id="connectedPersonsList">
+                        <div class="connected-person-item">
+                            <h4>Connected Person 1</h4>
+                            <div class="form-group">
+                                <label for="connectedPerson1">Value of transactions with Connected Person 1 and their Related Parties:</label>
+                                <div class="input-suffix">
+                                    <input type="number" id="connectedPerson1" name="connectedPerson1" placeholder="Enter amount" min="0" step="0.1">
+                                    <span class="suffix">AED (thousands)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="addConnectedPerson" class="button-secondary">
+                        <i class="fas fa-plus"></i> Add Another Connected Person
+                    </button>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="calculateButton" class="button-primary">
+                        <i class="fas fa-calculator"></i> Calculate Requirements
+                    </button>
+                    <button type="reset" id="resetButton" class="button-secondary">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </form>
+
+            <div id="results" class="results-container">
+                <div class="results-header">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>Transfer Pricing Requirements</h3>
+                </div>
+                <div id="resultsContent"></div>
+            </div>
+            
+            <div class="main-disclaimer">
+                <p>This calculator outcome is for information purposes only and not a tax or transfer pricing advice.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="contact-section">
+                <p>Contact us for any query: <a href="https://wa.link/izw03v" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
+            </div>
+            <p>&copy; 2025 AJMS LG. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
